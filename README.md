@@ -1,13 +1,20 @@
 # Streamlining Kubernetes Deployments: CI/CD with GitHub Actions and Helm for EKS
 update the values.yaml repository: XXXXXXXXXXXX.dkr.ecr.ap-northeast-2.amazonaws.com/eks-app-repo   #ECR registry URI 
+
 GitHub Actions CI/CD Workflow Explanation
+
 This project uses a GitHub Actions workflow to implement a full CI/CD pipeline for building, testing, scanning, and deploying a Java-based application to an AWS EKS cluster using Helm.
 
 Workflow File: .github/workflows/main.yml
+
 Workflow Triggers:
+
 Manually via workflow_dispatch
+
 Jobs Breakdown:
+
 1. Testing Job
+   
 This job performs code checkout, runs unit tests, performs code quality checks, and executes a SonarQube scan.
 
 Steps:
@@ -21,18 +28,25 @@ Checkstyle: Enforces code formatting using mvn checkstyle:checkstyle.
 Java Setup: Uses Java 17 as required by SonarScanner.
 
 SonarScanner Setup: Create an organization in sonarcloud
+
 Open the browser and navigate to www.sonarcloud.io, click the "+" at the top right corner and create a new organization -> create one manually
 
 name: github-actions-cicd
+
 key: github-actions-cicd -> Create
 
 Click analyze new project
 
 Organization: github-actions-cicd
+
 display name: github-actions
+
 Project key: github-actions -> Next
+
 The new code for this project will be based on: Previous version=true
+
 -> Create project
+
 Copy the sonar token and paste it in notepad, click on information on the left, copy the values of organization, project key and create secrets in Github settings
 
 SonarQube Scan: Analyzes code quality, test coverage, style violations, and sends the results to a configured SonarQube instance.
@@ -42,6 +56,7 @@ Secrets used:
 SONAR_URL, SONAR_TOKEN, SONAR_ORGANIZATION, SONAR_PROJECT_KEY
 
 2. Build_and_publish Job
+   
 This job builds a Docker image and pushes it to Amazon ECR, then runs a vulnerability scan using Trivy.
 
 Steps:
@@ -59,6 +74,7 @@ Secrets used:
 AWS_ACCESS_KEY_ID, AWS_SECRET_ACCESS_KEY, REGISTRY
 
 3. DeployToEKS Job
+   
 This job deploys the Docker image to an AWS EKS cluster using Helm.
 
 Steps:
@@ -100,9 +116,11 @@ Required GitHub Secrets:
 | `SONAR_PROJECT_KEY`     | Project key in SonarCloud/Qube |
 
 Note :For example this is the  ECR registry URI - XXXXXXXXXXXX.dkr.ecr.ap-northeast-2.amazonaws.com/eks-app-repo
+
  in the Secret REGISTRY you have to pass XXXXXXXXXXXX.dkr.ecr.ap-northeast-2.amazonaws.com
 
 Output Summary
+
 Unit-tested & analyzed Java code 
 
 Secure image pushed to ECR 
