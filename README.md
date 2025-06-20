@@ -1,31 +1,11 @@
 # Streamlining Kubernetes Deployments: CI/CD with GitHub Actions and Helm for EKS
+## Architecture Diagram
+![Architecture](https://github.com/visala123/Eks-infra-repo/blob/b389999ebce59ba2c72ffc12b2d12e628ebe9cfc/folder-structure.png)
+
+## Values.yaml
 update the values.yaml repository: XXXXXXXXXXXX.dkr.ecr.ap-northeast-2.amazonaws.com/eks-app-repo   #ECR registry URI 
 
-GitHub Actions CI/CD Workflow Explanation
-
-This project uses a GitHub Actions workflow to implement a full CI/CD pipeline for building, testing, scanning, and deploying a Java-based application to an AWS EKS cluster using Helm.
-
-Workflow File: .github/workflows/main.yml
-
-Workflow Triggers:
-
-Manually via workflow_dispatch
-
-Jobs Breakdown:
-
-1. Testing Job
-   
-This job performs code checkout, runs unit tests, performs code quality checks, and executes a SonarQube scan.
-
-Steps:
-
-Checkout Code: Uses the latest commit.
-
-Maven Test: Runs unit tests with mvn test.
-
-Checkstyle: Enforces code formatting using mvn checkstyle:checkstyle.
-
-Java Setup: Uses Java 17 as required by SonarScanner.
+## Sonar Scanner
 
 SonarScanner Setup: Create an organization in sonarcloud
 
@@ -55,7 +35,34 @@ Secrets used:
 
 SONAR_URL, SONAR_TOKEN, SONAR_ORGANIZATION, SONAR_PROJECT_KEY
 
-2. Build_and_publish Job
+## GitHub Actions CI/CD Workflow Explanation
+
+This project uses a GitHub Actions workflow to implement a full CI/CD pipeline for building, testing, scanning, and deploying a Java-based application to an AWS EKS cluster using Helm.
+
+Workflow File: .github/workflows/main.yml
+
+Workflow Triggers:
+
+Manually via workflow_dispatch
+
+## Jobs Breakdown:
+
+## 1. Testing Job
+   
+This job performs code checkout, runs unit tests, performs code quality checks, and executes a SonarQube scan.
+
+Steps:
+
+Checkout Code: Uses the latest commit.
+
+Maven Test: Runs unit tests with mvn test.
+
+Checkstyle: Enforces code formatting using mvn checkstyle:checkstyle.
+
+Java Setup: Uses Java 17 as required by SonarScanner.
+
+
+## 2. Build_and_publish Job
    
 This job builds a Docker image and pushes it to Amazon ECR, then runs a vulnerability scan using Trivy.
 
@@ -73,7 +80,7 @@ Secrets used:
 
 AWS_ACCESS_KEY_ID, AWS_SECRET_ACCESS_KEY, REGISTRY
 
-3. DeployToEKS Job
+## 3. DeployToEKS Job
    
 This job deploys the Docker image to an AWS EKS cluster using Helm.
 
@@ -95,15 +102,11 @@ appimage: Docker image URI from ECR
 
 apptag: GitHub run number for versioning 
 
-Folder Structure (relevant parts) 
+## Folder Structure (relevant parts) 
 
-.github/
-├── workflows/
-│   └── main.yml       # GitHub Actions workflow
-helm/
-└── githubactions-charts/       # Helm chart for deployment
+![Folder Structure](https://github.com/visala123/Eks-infra-repo/blob/b389999ebce59ba2c72ffc12b2d12e628ebe9cfc/folder-structure.png)
 
-Required GitHub Secrets:
+## Required GitHub Secrets:
 
 | Secret Name             | Description                    |
 | ----------------------- | ------------------------------ |
@@ -119,7 +122,7 @@ Note :For example this is the  ECR registry URI - XXXXXXXXXXXX.dkr.ecr.ap-northe
 
  in the Secret REGISTRY you have to pass XXXXXXXXXXXX.dkr.ecr.ap-northeast-2.amazonaws.com
 
-Output Summary
+## Summary
 
 Unit-tested & analyzed Java code 
 
