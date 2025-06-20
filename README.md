@@ -124,11 +124,11 @@ Note :For example this is the  ECR registry URI - XXXXXXXXXXXX.dkr.ecr.ap-northe
 
 ## To Expose the application 
 
-To get the address:
+Run:
 
 kubectl get ingress vpro-ingress
 
-copy the loadbalancer DNS and expose it in a web browser.
+Copy the LoadBalancer DNS address from the ADDRESS column and open it in a web browser to access the application.
 
 ## Login with
 
