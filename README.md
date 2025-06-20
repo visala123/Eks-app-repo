@@ -122,6 +122,20 @@ Note :For example this is the  ECR registry URI - XXXXXXXXXXXX.dkr.ecr.ap-northe
 
  in the Secret REGISTRY you have to pass XXXXXXXXXXXX.dkr.ecr.ap-northeast-2.amazonaws.com
 
+## To Expose the application 
+
+To get the address:
+
+kubectl get ingress vpro-ingress
+
+copy the loadbalancer DNS and expose it in a web browser.
+
+## Login with
+
+username: admin_vp
+
+passwrd: admin_vp
+
 ## Summary
 
 Unit-tested & analyzed Java code 
