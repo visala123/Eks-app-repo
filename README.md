@@ -1,6 +1,6 @@
 # Streamlining Kubernetes Deployments: CI/CD with GitHub Actions and Helm for EKS
 ## Architecture Diagram
-![Architecture](https://github.com/visala123/Eks-infra-repo/blob/b389999ebce59ba2c72ffc12b2d12e628ebe9cfc/folder-structure.png)
+![Architecture](https://github.com/visala123/Eks-app-repo/blob/cd5d9c4b141a4f05f88dc684094c650c6089ccd1/Architecture.png)
 
 ## Values.yaml
 update the values.yaml repository: XXXXXXXXXXXX.dkr.ecr.ap-northeast-2.amazonaws.com/eks-app-repo   #ECR registry URI 
@@ -104,7 +104,7 @@ apptag: GitHub run number for versioning
 
 ## Folder Structure (relevant parts) 
 
-![Folder Structure](https://github.com/visala123/Eks-infra-repo/blob/b389999ebce59ba2c72ffc12b2d12e628ebe9cfc/folder-structure.png)
+![Folder Structure](https://github.com/visala123/Eks-app-repo/blob/cd5d9c4b141a4f05f88dc684094c650c6089ccd1/Folder%20Structure.png)
 
 ## Required GitHub Secrets:
 
